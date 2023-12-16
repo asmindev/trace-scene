@@ -1,4 +1,4 @@
-chromadb
+chromadb==0.4.3
 pysqlite3-binary
 img2vec-pytorch
 flask
