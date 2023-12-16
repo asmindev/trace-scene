@@ -1,4 +1,5 @@
-chromadb==0.3.29
+chromadb
+pysqlite3-binary
 img2vec-pytorch
 flask
 flask_cors
