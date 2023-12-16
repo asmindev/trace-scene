@@ -1,0 +1,8 @@
+__pycache__
+videos/
+.chroma_data
+
+*.mp4
+*.mkv
+*.pyc
+*.sqlite3
