@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request, send_file
 from flask_cors import CORS, cross_origin
 import lib.predict as predict
 import time
+import json
 
 app = Flask(__name__)
 CORS(app)
@@ -42,7 +43,7 @@ def search():
         md["distance"] = dist
 
     # filter results
-    metadatas = [md for md in metadatas if md["distance"] < 0.16]
+    metadatas = [md for md in metadatas if md["distance"] < 0.15]
     if len(metadatas) == 0:
         return jsonify({"message": "No results found"}), 404
     return (
@@ -55,6 +56,12 @@ def search():
         ),
         200,
     )
+
+
+@app.route("/series", methods=["GET"])
+def series():
+    with open("database/log.json") as f:
+        return jsonify(json.load(f))
 
 
 if __name__ == "__main__":

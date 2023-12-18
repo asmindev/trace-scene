@@ -28,13 +28,20 @@ def process_videos(root_dir, pattern="**/*.mp4", max_workers=None):
     video_files = list(Path(root_dir).rglob(pattern))
 
     print(f'Found {len(video_files)} videos in "{root_dir.name}"...')
-    for video_file in list(video_files):
+    start_time = time.time()
+    videos = sorted(video_files)
+    for video_file in videos:
         split_video(video_file)
-    print("Done processing all videos.")
+    delta = timedelta(seconds=float(time.time() - start_time))
+    hours, remainder = divmod(delta.seconds, 3600)
+    minutes, seconds = divmod(remainder, 60)
+    print(
+        f"\nDone splitting all videos in {root_dir.name}! with total time taken: {hours:02d}:{minutes:02d}:{seconds:02d}"
+    )
 
 
 if __name__ == "__main__":
-    root_directory = Path(__file__).parent / "videos/The Silent Sea"
+    root_directory = Path(__file__).parent / "videos"
 
     # Get max_workers from input
 

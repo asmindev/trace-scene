@@ -6,3 +6,5 @@ videos/
 *.mkv
 *.pyc
 *.sqlite3
+*.chromadb
+database
